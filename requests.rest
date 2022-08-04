@@ -1,0 +1,26 @@
+###
+GET http://localhost:3001/api
+###
+GET http://localhost:3001/
+###
+GET http://localhost:3001/users
+###
+POST http://localhost:3001/signup
+Content-Type: application/json
+
+{
+  "username": "NewAccount2",
+  "password": "password"
+}
+###
+POST http://localhost:3001/login
+Content-Type: application/json
+
+{
+  "username": "NewAccount",
+  "password": "password"
+}
+
+###
+GET http://localhost:3001/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik5ld0FjY291bnQiLCJwYXNzd29yZCI6InBhc3N3b3JkIiwiaWF0IjoxNjU5MzE2NzM1LCJleHAiOjE2NTkzMTY3NTV9.mPv9g6A5p4gFgcDNjn1x9CzHtH-O3ElgMS0sjtpQG0g

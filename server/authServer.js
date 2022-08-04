@@ -16,7 +16,7 @@ const bcrypt = require("bcrypt");
 
 //  Express
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 4001;
 
 const app = express();
 
@@ -117,10 +117,8 @@ app.post("/users", (req, res) => {
 
 })
 
-app.post("/register", async (req, res) => {
+app.post("/signup", async (req, res) => {
   const username = req.body.username;
-  const password = req.body.password;
-  const email = req.body.email;
   let user;
   let hashedPassword;
 
@@ -131,38 +129,26 @@ app.post("/register", async (req, res) => {
       res.send({ err: err});
     }
     if (result.length > 0) {
-      if (result[0].username.length === 0) {
-        res.status(500).send({ message: "Username cannot be blank" });
-      } else {
-        res.status(500).send({ message: "Username already exists" });
-      }
+      res.status(500).send({ message: "Username already exists." });
+      // res.send(result);
+      // jwt.sign()
     } else {
-      db.query("SELECT * FROM chessusnode.users WHERE email = ?",
-      [email],
+      try {
+        const password = req.body.password;
+        const salt = bcrypt.genSaltSync();
+        hashedPassword = bcrypt.hashSync(password, salt)
+        console.log(salt);
+        console.log(hashedPassword);
+        user = { username: username, password: hashedPassword }
+      } catch {
+        res.status(500).send()
+      }
+      db.query("INSERT INTO chessusnode.users (username, password) VALUES (?,?)",
+      [username, hashedPassword],
         (err, result) => {
-          if (err) {
-            res.send({message: "error", err: err});
-          }
-          if (result.length > 0) {
-            res.status(500).send({ message: "Email already taken" });
-          } else {
-            try {
-              const salt = bcrypt.genSaltSync();
-              hashedPassword = bcrypt.hashSync(password, salt)
-              console.log(hashedPassword);
-              user = { username: username, password: hashedPassword, email: email }
-            } catch {
-              res.status(500).send()
-            }
-            db.query("INSERT INTO chessusnode.users (username, password, email) VALUES (?,?,?)",
-            [username, hashedPassword, email],
-              (err, result) => {
-                console.log(err);
-                console.log(result);
-                res.status(201).send(user);
-              }
-            );
-          }
+          console.log(err);
+          console.log(result);
+          res.status(201).send(user);
         }
       );
     }
@@ -181,18 +167,18 @@ app.post("/login", async (req, res) => {
       res.send({ err: err});
     }
     if (!result.length > 0) {
-      res.status(400).send({ auth: false, message: "Username does not exist" });
+      res.status(400).send({ message: "Username does not exist." });
     } else {
       //  If the username exists, check everything else:
       try {
-        if (bcrypt.compareSync(password, result[0].password)) {
+        console.log(result[0].password);
+        if(bcrypt.compareSync(password, result[0].password)) {
           const user = { username: username, password: password };
-          const accessToken = generateAccessToken(user);
-          // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
-          result[0].accessToken = accessToken;
-          res.json({ auth: true, result: result[0] });
+          const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+          res.json({ accessToken: accessToken });
+          res.send(result);
         } else {
-          res.status(400).send({auth: false, message: "Incorrect password"});
+          res.send("Invalid password.");
         }
       } catch {
         res.status(500).send()
@@ -200,11 +186,6 @@ app.post("/login", async (req, res) => {
     }
   })
 });
-
-// app.post('/logout', authenticateToken, (req, res) => {
-//   // localStorage.removeItem("accessToken");
-//   res.send({message: "You have been logged out"});
-// })
 
 const posts = [{
   username: 'NewAccount',
@@ -219,27 +200,17 @@ app.get('/posts', authenticateToken, (req, res) => {
   res.json(posts.filter(post => post.username === req.user.username))
 })
 
-app.post('/token', (req, res) => {
-  const refreshToken = req.body.token
-})
-
 // ----------------------- Middleware ------------------------------
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
-  if (token == null) {
-    res.send("No token!");
-  }
+  if (token == null) return res.sendStatus(401)
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(403)
     req.user = user
     next()
   })
-}
-
-function generateAccessToken(user) {
-  return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '500s' });
 }
 
 

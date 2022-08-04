@@ -1,61 +1,61 @@
-import React, { useState } from "react";
-import Axios from 'axios'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/navbar/Navbar';
+import Home from './components/home/Home';
+import SignUp from './components/signup/SignUp';
+import Login from "./components/signin/Login";
+import Register from "./components/signup/Register";
+import Profile from "./components/profile/Profile";
+import { logout } from "./actions/auth";
+import { clearMessage } from "./actions/message";
+import { history } from "./helpers/history";
+import NotFound from './components/notfound/NotFound';
 import "./App.css";
 
 function App() {
 
-  const [usernameReg, setUsernameReg] = useState('');
-  const [passwordReg, setPasswordReg] = useState('');
+  // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
+  // const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const signup = () => {
-    Axios.post('http://localhost:3001/signup', {
-      username: usernameReg,
-      password: passwordReg,
-    }).then((response) => {
-      console.log(response);
+  useEffect(() => {
+    history.listen((location) => {
+      dispatch(clearMessage()); // clear message when changing location
     });
-  };
+  }, [dispatch]);
 
-  const login = () => {
-    Axios.post('http://localhost:3001/login', {
-      username: username,
-      password: password,
-    }).then((response) => {
-      console.log(response);
-    });
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
+  //     setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+  //   }
+  // }, [currentUser]);
+
+  const logOut = () => {
+    dispatch(logout());
   };
 
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <h1>
-          Welcome to the app.  This page doesn't exist right now xD
-        </h1>
-      </header> */}
-      <div>
-        <div className="registration">
-          <h1>Registration</h1>
-          <label>Username</label>
-          <input type="text" onChange={(e) => {setUsernameReg(e.target.value);}}/>
-          <label>Password</label>
-          <input type="text" onChange={(e) => {setPasswordReg(e.target.value);}}/>
-          <button onClick={signup}>Sign up</button>
+    <Router history={history}>
+      <div className="app">
+        <div className="app-header">
+          <Navbar />
         </div>
-
-
-        <div className="login">
-          <h1>Login</h1>
-          <label>Username</label>
-          <input type="text" placeholder="Username..." onChange={(e) => {setUsername(e.target.value);}}/>
-          <label>Password</label>
-          <input type="text" placeholder="Password..." onChange={(e) => {setPassword(e.target.value);}}/>
-          <button onClick={login}>Login</button>
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
