@@ -14,16 +14,19 @@ const Menu = () => (
       </Link>
       <div className="inner-menu">
         <Link as="div" className="inner-menu-item upper-right-corner" to="/home">
-          Join a game
-        </Link>
-        <Link as="div" className="inner-menu-item" to="/home">
-          Create a game
+          New game
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
           Browse games
         </Link>
-        <Link as="div" className="inner-menu-item lower-corner" to="/home">
+        <Link as="div" className="inner-menu-item" to="/home">
+          Play against yourself
+        </Link>
+        <Link as="div" className="inner-menu-item" to="/home">
           Play with friends
+        </Link>
+        <Link as="div" className="inner-menu-item lower-corner" to="/home">
+          Play with others
         </Link>
       </div>
     </div>
@@ -34,10 +37,10 @@ const Menu = () => (
     Browse open games
     Play with friends */}
     <div className="nav-item">
-      <Link as="div" className="nav-item-inner" to="/design">Design
+      <Link as="div" className="nav-item-inner" to="/create">Create
       </Link>
       <div className="inner-menu">
-        <Link as="div" className="inner-menu-item upper-right-corner" to="/home">
+        <Link as="div" className="inner-menu-item upper-right-corner" to="/create/game">
           Design a game
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
@@ -111,56 +114,58 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar" id="navbar">
-      <div className="navbar-links">
-        <div className="nav-container">
-          <Link to="/" className="main-logo">CHESSUS</Link>
-          <div className="navbar-links-container">
-            <Menu />
-          </div>
-        </div>
-        {currentUser ? (
-          <div className="user-info">
-            <div className="nav-item">
-              <Link to={"/profile"} className="nav-item-inner">
-                {currentUser.username}
-              </Link>
-            </div>
-            <div className="nav-item">
-              <Link to="/login" className="nav-item-inner" onClick={logOut}>
-                LogOut
-              </Link>
-            </div>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Sign In
-              </Link>
-            </li>
-            {/* <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li> */}
-          </div>
-        )}
-      </div>
-      <div className="navbar-menu">
-        { toggleMenu 
-          ? <RiCloseLine color="fff" size={27} onClick={() => setToggleMenu(false)} />
-          : <RiMenu3Line color="fff" size={27} onClick={() => setToggleMenu(true)} />
-        }
-        { toggleMenu && (
-          <div className="navbar-menu-container scale-up-center">
-            <div className="navbar-menu-container-links">
+    <div>
+      <div className="navbar" id="navbar">
+        <div className="navbar-links">
+          <div className="nav-container">
+            <Link to="/" className="main-logo">CHESSUS</Link>
+            <div className="navbar-links-container">
               <Menu />
             </div>
           </div>
-        )}
+          {currentUser ? (
+            <div className="user-info">
+              <div className="nav-item">
+                <Link to={"/profile"} className="nav-item-inner">
+                  {currentUser.username}
+                </Link>
+              </div>
+              <div className="nav-item">
+                <Link to="/login" className="nav-item-inner" onClick={logOut}>
+                  LogOut
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <div className="nav-item">
+                <Link to={"/login"} className="nav-item-inner">
+                  Sign In
+                </Link>
+              </div>
+              {/* <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li> */}
+            </div>
+          )}
+        </div>
+        <div className="navbar-menu">
+          { toggleMenu 
+            ? <RiCloseLine color="fff" size={27} onClick={() => setToggleMenu(false)} />
+            : <RiMenu3Line color="fff" size={27} onClick={() => setToggleMenu(true)} />
+          }
+          { toggleMenu && (
+            <div className="navbar-menu-container scale-up-center">
+              <div className="navbar-menu-container-links">
+                <Menu />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-
+      <div className="navbar-border"></div>
     </div>
   )
 }

@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --font-family: 'Manrope', sans-serif;
+  --background-color: #e2ffda;
+  --nav-background: #082c51;
+  --dark-blue-text: #09325a;
+  --link-text: #1163b5;
+  --link-text-light: #508fcd;
+  --light-gray: #9fb4ca;
+  --lighter-gray: #cbd6e3;
+  --navigation: #b3c5c9;
+  --navigation-hover: #5b6567;
+  --navigation-focus: #9bc23b;
+  --scrollbar-color: #6cacd4;
+  --scrollbar-background: #285c94;
+}

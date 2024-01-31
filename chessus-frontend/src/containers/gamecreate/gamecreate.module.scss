@@ -1,0 +1,134 @@
+.outer-container {
+  display: block;
+  margin: auto;
+}
+
+.game-board {
+  height: max(70vw, 600px);
+  width: max(70vw, 600px);
+  padding: 25px;
+  margin: 20px;
+  background: rgb(76, 100, 143);
+  border: 2px solid rgb(202, 213, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// .wrapper {
+//   width: 100%;
+// }
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-form {
+  width: 25vw;
+  margin: 20px 20px 0px 0px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-description {
+  min-height: 200px;
+  max-width: 300px;
+}
+
+.game-validation {
+  color: rgb(237, 93, 45);
+  font-size: 14px;
+  padding: 5px;
+  max-width: 300px;
+}
+
+input {
+  width: 90%;
+  margin: 5px 5px;
+  padding: 5px 5px;
+  max-width: 300px;
+}
+
+textarea {
+  width: 90%;
+  margin: 5px 5px;
+  padding: 5px 5px;
+  max-width: 300px;
+}
+
+label {
+  padding: 5px 5px;
+  max-width: 300px;
+}
+
+.game-create-tips {
+  padding: 5px;
+}
+
+@media screen and (max-width: 912px) {
+
+  .game-board {
+    height: max(90vw, 300px);
+    width: max(90vw, 300px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 2px solid rgb(202, 213, 232);
+  }
+  
+  // .wrapper {
+  //   width: 100%;
+  // }
+  
+  .container {
+    display: block;
+    
+  }
+  
+  .game-form {
+    width: 100vw;
+    margin: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .game-description {
+    min-height: 200px;
+    max-width: 300px;
+  }
+  
+  .game-validation {
+    color: rgb(237, 93, 45);
+    font-size: 14px;
+    padding: 5px;
+    max-width: 300px;
+  }
+  
+  input {
+    width: 90%;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    max-width: 300px;
+  }
+  
+  textarea {
+    width: 90%;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    max-width: 300px;
+  }
+  
+  label {
+    padding: 5px 5px;
+    max-width: 300px;
+  }
+
+  .game-create-tips {
+    margin-bottom: 20px;
+  }
+}

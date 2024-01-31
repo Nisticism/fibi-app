@@ -7,10 +7,12 @@ import SignUp from './components/signup/SignUp';
 import Login from "./components/signin/Login";
 import Register from "./components/signup/Register";
 import Profile from "./components/profile/Profile";
+import GameCreate from "./containers/gamecreate/GameCreate";
+import NotFound from './components/notfound/NotFound';
+
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 import { history } from "./helpers/history";
-import NotFound from './components/notfound/NotFound';
 import "./App.css";
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/create/game" element={<GameCreate />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>

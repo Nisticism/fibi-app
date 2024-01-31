@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Chessus",
+  "name": "Chessus - Create your own chess like game!",
   "icons": [
     {
       "src": "favicon.ico",
