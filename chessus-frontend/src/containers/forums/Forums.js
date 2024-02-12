@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
-const CreateHub = () => {
+const Forums = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
   if (!currentUser) {
     return <Navigate to="/login" />;
@@ -32,4 +32,4 @@ const CreateHub = () => {
   );
 };
 
-export default CreateHub;
+export default Forums;

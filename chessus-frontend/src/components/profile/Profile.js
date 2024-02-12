@@ -1,18 +1,108 @@
-import React from "react";
-import { Navigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
-const Profile = () => {
+import React, { useState } from "react";
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import styles from "./profile.module.scss";
+import { deleteUser } from "../../actions/auth";
+
+const Profile = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
+
+  
+  const [loading, setLoading] = useState(false);
+  const [ messageDisplay, setMessageDisplay ] = useState(false);
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
+
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteUser(currentUser.username))
+    // navigate("/account-deleted").then(
+    // );
+    // dispatch(deleteUser(currentUser.username))
+    //   .then(() => {
+    //     props.history.push("/deleted-account");
+    //     window.location.reload();
+    //   })
+    //   .catch(() => {
+    //     setLoading(false);
+    //     setMessageDisplay(true);
+    //   });
+  };
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    navigate("/profile/edit");
+  }
+
   return (
     <div className="container">
-      <header className="jumbotron">
+      <header>
         <h3>
-          <strong>{currentUser.username}</strong> Profile
+          <strong>{currentUser.username}</strong>
         </h3>
       </header>
+      <table>
+            <tbody>
+            <tr>
+              <th>
+                
+              </th>
+              <th>
+                Username
+              </th>
+              <th>
+                First Name
+              </th>
+              <th>
+                Last Name
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Phone
+              </th>
+              <th>
+                Password/Token
+              </th>
+          </tr>
+            {/* {
+              allUsers.usersList.map(function(user) {
+                return (
+                  <tr key={user.id}>
+                    <td>
+                      {user.id}
+                    </td>
+                    <td>
+                      {user.username}
+                    </td>
+                    <td>
+                      {user.first_name}
+                    </td>
+                    <td>
+                      {user.last_name}
+                    </td>
+                    <td>
+                      {user.email}
+                    </td>
+                    <td>
+                      {user.phone}
+                    </td>
+                    <td>
+                      {
+                      user.password.length >= 15 ? user.password.substring(0, 15) + "..." : user.password}
+                    </td>
+                  </tr>
+                )
+              })
+            } */}
+            </tbody>
+          </table>
       <p>
         <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
@@ -28,6 +118,8 @@ const Profile = () => {
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul> */}
+      <button className={styles["profile-button"]} onClick={handleDelete}>Delete Account</button>
+      <button className={styles["profile-button"]} onClick={handleEdit}>Edit Account</button>
     </div>
   );
 };

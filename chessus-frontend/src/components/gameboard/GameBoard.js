@@ -80,9 +80,9 @@ const GameBoard = (props) => {
   }
 
   const getBoardSize = () => {
-    let length = windowWidth * 0.7;
+    let length = windowWidth * 0.6;
     if (windowWidth <= 912) {
-      length = windowWidth * 0.9;
+      length = windowWidth * 0.85;
     }
     if (length < 350) {
       return 350;

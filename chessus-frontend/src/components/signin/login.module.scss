@@ -1,7 +1,43 @@
 .main {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .form-group {
   padding: 10px;
+}
+
+.login-button {
+  background-color: rgb(75, 77, 124);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px 10px 15px 10px;
+  width: 320px;
+  border-radius: 4px;
+  border: 2px solid rgb(117, 124, 252);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+  background: #1e2129;
+  margin-top: 25px;
+  min-width: 380px;
+  border-radius: 10px;
+  padding-top: 10px;
+}
+
+.login-button:hover {
+  background-color: rgb(59, 61, 131);
+  cursor: pointer;
+}
+
+.field-label {
+  display: inline-block;
+  width: 80px;
+  padding: 0px 10px 0px 0px;
 }

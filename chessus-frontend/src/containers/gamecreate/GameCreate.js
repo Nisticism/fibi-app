@@ -12,7 +12,8 @@ const GameCreate = () => {
   const [vertical, setVertical] = useState(7);
   const [topLeftLight, setTopLeftLight] = useState(true);
   const [squareLength, setSquareLength] = useState(80);
-  const [gameDescription, setGameDescription] = useState("This is a 2 person strategy game that resembles chess, but on a differently sized board!");
+  const [gameDescription, setGameDescription] = 
+  useState("This is a 2 person strategy game that resembles chess, but on a differently sized board with different rules!");
   const [gameDescriptionValidation, setGameDescriptionValidation] = useState("");
   const [gameName, setGameName] = useState("Chessus");
   const [gameNameValidation, setGameNameValidation] = useState("");
@@ -111,8 +112,8 @@ const GameCreate = () => {
       </form>
     </div>
     <div className={styles["game-create-tips"]}>
-      <p style={{width: "fit-content", marginLeft: "100px"}}>* Click the board to add starting pieces for each player.</p>
-      <p style={{width: "fit-content", marginLeft: "100px"}}>* Right click to add range squares (squares that increase the movement or attack range of any piece on it).</p>
+      <p>* Click the board to add starting pieces for each player.</p>
+      <p>* Right click to add range squares (squares that increase the movement or attack range of any piece on it).</p>
     </div>
     </div>
   );

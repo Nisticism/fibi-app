@@ -5,3 +5,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const SET_MESSAGE = "SET_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const LIST_USERS = "LIST_USERS";
+export const LIST_USERS_FAIL = "LIST_USERS_FAIL";
+export const DELETE_USER = "DELETE_USER";
+export const REMOVE_USERS = "REMOVE_USERS";

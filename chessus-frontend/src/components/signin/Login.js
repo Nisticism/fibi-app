@@ -65,8 +65,8 @@ const Login = (props) => {
   }
 
   return (
-    <div className={`${styles.main}${styles.something}`}>
-      <div className="card card-container">
+    <div className={styles["main"]}>
+      <div className={styles["wrapper"]}>
         {/* <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
@@ -74,7 +74,7 @@ const Login = (props) => {
         /> */}
         <form onSubmit={handleLogin} ref={form}>
           <div className={styles["form-group"]}>
-            <label htmlFor="username">Username: </label>
+            <label htmlFor="username" className={styles["field-label"]}>Username: </label>
             <input
               type="text"
               className={styles["form-control"]}
@@ -85,7 +85,7 @@ const Login = (props) => {
             />
           </div>
           <div className={styles["form-group"]}>
-            <label htmlFor="password">Password: </label>
+            <label htmlFor="password" className={styles["field-label"]}>Password: </label>
             <input
               type="password"
               className="form-control"
@@ -96,7 +96,7 @@ const Login = (props) => {
             />
           </div>
           <div className={styles["form-group"]}>
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className={styles["login-button"]} disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -114,7 +114,9 @@ const Login = (props) => {
         </form>
         <hr />
         <h2>Don't have an account?</h2>
-        <button onClick={handleSignup}>Sign Up</button>
+        <div style={{paddingBottom: "10px"}}>
+        <button className={styles["login-button"]} onClick={handleSignup}>Sign Up</button>
+        </div>
       </div>
     </div>
   );

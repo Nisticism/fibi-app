@@ -107,10 +107,36 @@ app.get("/", (req, res) => {
   res.json({ message: "Home page!" });
 })
 
-const users = [];
+app.get("/user", (params, res) => {
+  const username = params.query.username;
+  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  [username],
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    if (!result.length > 0) {
+      res.status(400).send({ auth: false, message: "Username does not exist" });
+    } else {
+      try {
+        res.json({ result: result[0], message: "User found" });
+      } catch {
+        res.status(500).send()
+      }
+    }
+  })
+});
 
-app.get("/users", authenticateToken, (req, res) => {
-  res.json(users);
+app.get("/users", (req, res) => {
+
+  db.query("SELECT * FROM chessusnode.users",
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    let users = result;
+    res.json(users);
+  });
 })
 
 app.post("/users", (req, res) => {
@@ -201,10 +227,23 @@ app.post("/login", async (req, res) => {
   })
 });
 
-// app.post('/logout', authenticateToken, (req, res) => {
-//   // localStorage.removeItem("accessToken");
-//   res.send({message: "You have been logged out"});
-// })
+app.post("/delete", async (req, res) => {
+  const username = req.body.username;
+  db.query("DELETE FROM chessusnode.users WHERE username = ?",
+  [username],
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    else {
+      res.json({message: "Account deleted"});
+    }
+  })
+})
+
+app.post('/logout', (req, res) => {
+  console.log("You have been logged out");
+});
 
 const posts = [{
   username: 'NewAccount',
@@ -241,13 +280,6 @@ function authenticateToken(req, res, next) {
 function generateAccessToken(user) {
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '500s' });
 }
-
-
-
-
-
-
-
 
 //  -----------------------  Other/Port -------------------------
 

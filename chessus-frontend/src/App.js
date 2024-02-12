@@ -7,7 +7,15 @@ import SignUp from './components/signup/SignUp';
 import Login from "./components/signin/Login";
 import Register from "./components/signup/Register";
 import Profile from "./components/profile/Profile";
+import PlayerPage from "./components/playerpage/PlayerPage";
 import GameCreate from "./containers/gamecreate/GameCreate";
+import CreateHub from "./containers/createhub/CreateHub";
+import PlayerList from "./components/playerlist/PlayerList";
+import Forums from "./containers/forums/Forums";
+import ChessBoard from "./components/chess/ChessBoard";
+import EditAccount from "./components/editaccount/EditAccount";
+
+import DeletedAccount from "./components/deletedaccount/DeletedAccount";
 import NotFound from './components/notfound/NotFound';
 
 import { logout } from "./actions/auth";
@@ -54,6 +62,13 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/create/game" element={<GameCreate />} />
+            <Route exact path="/create" element={<CreateHub />} />
+            <Route exact path="/community/players" element={<PlayerList />} />
+            <Route exact path="/media/forums" element={<Forums />} />
+            <Route exact path="/chess" element={<ChessBoard />} />
+            <Route exact path="/account-deleted" element={<DeletedAccount />} />
+            <Route exact path="profile/edit" element={<EditAccount />}  />
+            <Route exact path="profile/:username" element={<PlayerPage />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>

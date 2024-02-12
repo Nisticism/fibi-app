@@ -1,4 +1,5 @@
 import axios from "axios";
+// import { response } from "express";
 
 const API_URL = "http://localhost:3001/";
 
@@ -34,6 +35,17 @@ const logout = () => {
   });
 };
 
+const deleteUser = (username) => {
+  localStorage.removeItem("user");
+  return axios
+    .post(API_URL + "delete", {
+      username,
+    })
+    .then((response) => {
+      return response.data;
+  });
+}
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -43,6 +55,7 @@ const AuthService = {
   login,
   logout,
   getCurrentUser,
+  deleteUser,
 }
 
 export default AuthService;

@@ -6,7 +6,7 @@ import CheckButton from "react-validation/build/button";
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
 import { register, login } from "../../actions/auth";
-import styles from "./signup.module.scss";
+import styles from "./edit-account.module.scss";
 
 const required = (value) => {
   if (!value) {
@@ -48,7 +48,7 @@ const vpassword = (value) => {
   }
 };
 
-const Register = () => {
+const EditAccount = () => {
   const form = useRef();
   const checkBtn = useRef();
   const [username, setUsername] = useState("");
@@ -157,4 +157,4 @@ const Register = () => {
     </div>
   );
 };
-export default Register;
+export default EditAccount;

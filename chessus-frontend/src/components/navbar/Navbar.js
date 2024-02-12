@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../actions/auth";
+import { logout, removeUsers } from "../../actions/auth";
 import { clearMessage } from "../../actions/message";
 import { history } from "../../helpers/history";
 import './navbar.scss';
@@ -20,13 +20,10 @@ const Menu = () => (
           Browse games
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
-          Play against yourself
-        </Link>
-        <Link as="div" className="inner-menu-item" to="/home">
-          Play with friends
+          Sandbox
         </Link>
         <Link as="div" className="inner-menu-item lower-corner" to="/home">
-          Play with others
+          Play with friends
         </Link>
       </div>
     </div>
@@ -81,7 +78,7 @@ const Menu = () => (
       <Link as="div" className="nav-item-inner" to="/community">Community
       </Link>
       <div className="inner-menu">
-        <Link as="div" className="inner-menu-item upper-right-corner" to="/home">
+        <Link as="div" className="inner-menu-item upper-right-corner" to="/community/players">
           Players
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
@@ -91,6 +88,11 @@ const Menu = () => (
           Donate
         </Link>
       </div>
+    </div>
+
+    <div className="nav-item">
+      <Link as="div" className="nav-item-inner" to="/chess">Plain Old Chess
+      </Link>
     </div>
     
     {/* players, donate, leaderboard */}
@@ -110,6 +112,7 @@ const Navbar = () => {
   }, [dispatch]);
 
   const logOut = () => {
+    dispatch(removeUsers());
     dispatch(logout());
   };
 
@@ -126,7 +129,7 @@ const Navbar = () => {
           {currentUser ? (
             <div className="user-info">
               <div className="nav-item">
-                <Link to={"/profile"} className="nav-item-inner">
+                <Link to={"/profile/" + currentUser.username} className="nav-item-inner">
                   {currentUser.username}
                 </Link>
               </div>

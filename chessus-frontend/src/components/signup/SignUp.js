@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './signup.scss';
+import styles from './signup.module.scss';
 
 const SignUp = () => {
 
