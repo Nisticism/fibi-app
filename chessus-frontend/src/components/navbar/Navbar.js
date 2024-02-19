@@ -90,10 +90,10 @@ const Menu = () => (
       </div>
     </div>
 
-    <div className="nav-item">
+    {/* <div className="nav-item">
       <Link as="div" className="nav-item-inner" to="/chess">Plain Old Chess
       </Link>
-    </div>
+    </div> */}
     
     {/* players, donate, leaderboard */}
   </div>

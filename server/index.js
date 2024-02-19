@@ -195,6 +195,67 @@ app.post("/register", async (req, res) => {
   });
 });
 
+app.post("/profile/edit", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log("the password is still" + password);
+  const email = req.body.email;
+  const first_name = req.body.first_name;
+  const last_name = req.body.last_name;
+  const phone = req.body.phone;
+  const id = req.body.id;
+  console.log("in the edit backend")
+
+  let user;
+  let hashedPassword;
+
+  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  [username],
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    if (result.length > 0 && result[0].username != username) {
+        res.status(500).send({ message: "Username already taken" });
+    } else {
+      if (username.length < 1) {
+        res.status(500).send({ message: "Username must be between 1 and 20 characters" });
+      }
+      db.query("SELECT * FROM chessusnode.users WHERE email = ?",
+      [email],
+        (err, result) => {
+          if (err) {
+            res.send({message: "error", err: err});
+          }
+          if (result.length > 0 && result[0].email != email) {
+            if (result[0].email != email) {
+              res.status(500).send({ message: "Email already taken" });
+            }
+          } else {
+            try {
+              const salt = bcrypt.genSaltSync();
+              hashedPassword = bcrypt.hashSync(password, salt)
+              // console.log(hashedPassword);
+              user = { username: username, password: hashedPassword, email: email, first_name: first_name, last_name: last_name, phone: phone, id: id}
+            } catch {
+              res.status(500).send()
+            }
+            db.query("UPDATE chessusnode.users SET username = ?, password = ?, email = ?, first_name = ?, last_name = ?, phone = ? WHERE id = ?",
+            [username, hashedPassword, email, first_name, last_name, phone, id],
+              (err, result) => {
+                console.log(err);
+                console.log(result);
+                res.json({ auth: true, result: user });
+                // res.status(201).send(user);
+              }
+            );
+          }
+        }
+      );
+    }
+  });
+});
+
 app.post("/login", async (req, res) => {
 
   const username = req.body.username;
@@ -218,6 +279,7 @@ app.post("/login", async (req, res) => {
           result[0].accessToken = accessToken;
           res.json({ auth: true, result: result[0] });
         } else {
+          console.log("we are in the failed login backend method");
           res.status(400).send({auth: false, message: "Incorrect password"});
         }
       } catch {

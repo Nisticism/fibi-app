@@ -7,6 +7,8 @@ import {
   SET_MESSAGE,
   DELETE_USER,
   REMOVE_USERS,
+  EDIT_SUCCESS,
+  EDIT_FAIL,
 } from "./types";
 import AuthService from "../services/auth.service";
 
@@ -31,6 +33,39 @@ export const register = (username, password, email) => (dispatch) => {
         error.toString();
       dispatch({
         type: REGISTER_FAIL,
+      });
+      dispatch({
+        type: SET_MESSAGE,
+        payload: message,
+      });
+      return Promise.reject();
+    }
+  );
+};
+
+export const edit = (username, password, email, first_name, last_name, phone, id) => (dispatch) => {
+  return AuthService.edit(username, password, email, first_name, last_name, phone, id).then(
+    (response) => {
+      console.log("in edit action");
+      dispatch({
+        type: EDIT_SUCCESS,
+        payload: { user: response.result },
+      });
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      });
+      return Promise.resolve();
+    },
+    (error) => {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      dispatch({
+        type: EDIT_FAIL,
       });
       dispatch({
         type: SET_MESSAGE,

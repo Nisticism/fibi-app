@@ -3,25 +3,13 @@
   margin: auto;
 }
 
-.game-board {
-  height: max(65vw, 600px);
-  width: max(65vw, 600px);
-  padding: 25px;
-  margin: 20px;
-  background: rgb(76, 100, 143);
-  border: 2px solid rgb(202, 213, 232);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 // .wrapper {
 //   width: 100%;
 // }
 
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .game-form {
@@ -34,33 +22,47 @@
 
 .game-description {
   min-height: 200px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .game-validation {
   color: rgb(237, 93, 45);
   font-size: 14px;
   padding: 5px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 input {
   width: 90%;
   margin: 5px 5px;
   padding: 5px 5px;
-  max-width: 300px;
+  max-width: 400px;
+}
+
+.checkbox-style {
+  height: 20px;
+  width: 20px;
+  margin: 0px;
+}
+
+.checkbox-label {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  max-width: 250px;
+  padding: 5px 10px;
 }
 
 textarea {
   width: 90%;
   margin: 5px 5px;
   padding: 5px 5px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 label {
   padding: 5px 5px;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .game-create-tips {
@@ -72,6 +74,43 @@ label {
     display: flex;
     justify-content: center;
   }
+}
+
+.conditions-container {
+  display: block;
+  width: 400px;
+}
+
+.conditions-label {
+  width: 400px;
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 40px;
+  padding-left: 40px;
+  max-width: 390px;
+}
+
+.submit-button {
+  background-color: rgb(75, 77, 124);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px 10px 15px 10px;
+  width: 320px;
+  border-radius: 4px;
+  border: 2px solid rgb(117, 124, 252);
+}
+
+.submit-button:hover {
+  background-color: rgb(59, 61, 131);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 912px) {
@@ -87,17 +126,18 @@ label {
     border: 2px solid rgb(202, 213, 232);
   }
   
-  // .wrapper {
-  //   width: 100%;
-  // }
+  .wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   
   .container {
     display: block;
-    
   }
   
   .game-form {
-    width: 100vw;
+    width: 100%;
     margin: 20px 0px;
     align-items: center;
     display: flex;
@@ -106,21 +146,21 @@ label {
   
   .game-description {
     min-height: 200px;
-    max-width: 300px;
+    max-width: 400px;
   }
   
   .game-validation {
     color: rgb(237, 93, 45);
     font-size: 14px;
     padding: 5px;
-    max-width: 300px;
+    max-width: 400px;
   }
   
   input {
     width: 90%;
     margin: 5px 5px;
     padding: 5px 5px;
-    max-width: 300px;
+    max-width: 400px;
   }
   
   textarea {
@@ -132,12 +172,17 @@ label {
   
   label {
     padding: 5px 5px;
-    max-width: 300px;
+    max-width: 400px;
   }
 
   .game-create-tips {
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .checkbox-label {
+    max-width: 350px;
+    padding: 5px 5px;
   }
 }
 

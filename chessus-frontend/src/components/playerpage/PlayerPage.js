@@ -45,7 +45,8 @@ const PlayerPage = (props) => {
     axios.get('http://localhost:3001/user', 
      {params: { username: username}})
     .then (res => {
-      setUserInfo(res.data.result);
+        setUserInfo(currentUser);
+        setUserInfo(res.data.result);
       setRealUser(true);
     })
     .catch(
@@ -68,15 +69,33 @@ const PlayerPage = (props) => {
                 </tr>
                 <tr>
                   <td>First name:</td>
-                  <td>{userInfo.first_name ? userInfo.first_name : "N/A"}</td>
+                  <td>{username === currentUser.username ? (currentUser.first_name ? currentUser.first_name : "N/A") 
+                  : userInfo.first_name ? userInfo.first_name : "N/A"}</td>
                 </tr>
                 <tr>
                   <td>Last name:</td>
-                  <td>{userInfo.last_name ? userInfo.last_name : "N/A"}</td>
+                  <td>{username === currentUser.username ? (currentUser.last_name ? currentUser.last_name : "N/A") 
+                  : userInfo.last_name ? userInfo.last_name : "N/A"}</td>
                 </tr>
                 <tr>
-                  <td>ID:</td>
-                  <td>{userInfo.id}</td>
+                  <td>Email:</td>
+                  <td>{username === currentUser.username ? (currentUser.email ? currentUser.email : "N/A") 
+                  : userInfo.email ? userInfo.email : "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Phone:</td>
+                  <td>{username === currentUser.username ? (currentUser.phone ? currentUser.phone : "N/A") 
+                  : userInfo.phone ? userInfo.phone : "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Role:</td>
+                  <td>{username === currentUser.username ? (currentUser.role ? currentUser.role : "N/A")
+                  : userInfo.role ? userInfo.role : "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Last Active:</td>
+                  <td>{username === currentUser.username ? (currentUser.last_active_at ? currentUser.last_active_at : "N/A") 
+                  : userInfo.last_active_at ? userInfo.last_active_at : "N/A"}</td>
                 </tr>
               </tbody>
             </table>
@@ -85,7 +104,7 @@ const PlayerPage = (props) => {
            <div className={styles["user-not-found"]}>
               <strong>
                 <header>
-                  User not found!
+                  Player with username "{username}" not found!
                 </header>
               </strong>
            </div>}

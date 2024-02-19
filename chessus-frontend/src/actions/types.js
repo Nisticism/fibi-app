@@ -9,3 +9,5 @@ export const LIST_USERS = "LIST_USERS";
 export const LIST_USERS_FAIL = "LIST_USERS_FAIL";
 export const DELETE_USER = "DELETE_USER";
 export const REMOVE_USERS = "REMOVE_USERS";
+export const EDIT_SUCCESS = "EDIT_SUCCESS";
+export const EDIT_FAIL = "EDIT_FAIL"

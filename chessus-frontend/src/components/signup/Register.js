@@ -78,14 +78,14 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     setSuccessful(false);
-    // form.current.validateAll();
+    form.current.validateAll();
     // if (checkBtn.current.context._errors.length === 0) {
     dispatch(register(username, password, email))
       .then(() => {
         setSuccessful(true);
         dispatch(login(username, password))
         .then(() => {
-          navigate("/profile");
+          navigate("/profile/" + username);
         })
       })
       .catch(() => {

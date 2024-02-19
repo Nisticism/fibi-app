@@ -1,6 +1,8 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  EDIT_SUCCESS,
+  EDIT_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
@@ -25,6 +27,16 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: false,
       };
+    case EDIT_SUCCESS:
+      console.log("in edit reducer - edit success");
+      return {
+        ...state,
+        user: payload.user,
+      }
+    case EDIT_FAIL:
+      return {
+        ...state,
+      }
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -42,7 +54,6 @@ export default function (state = initialState, action) {
         ...state,
         isLoggedIn: false,
         user: null,
-        users: null
       };
     case DELETE_USER:
       return {

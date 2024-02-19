@@ -47,12 +47,9 @@ const GameBoard = (props) => {
 
   let board = [];
 
-  const darkSquare = {
-    background: "rgb(8, 35, 77)"
-  }
-
-  const lightSquare = {
-    background: "rgb(202, 213, 232)"
+  const handleBoardClick = (e) => {
+    e.preventDefault();
+    console.log("light square clicked");
   }
 
   function createGrid() {
@@ -60,11 +57,11 @@ const GameBoard = (props) => {
       for (let j = 0; j < props.horizontal; j ++) {
         if ((i + j)%2 === 0) {
           board.push(
-            <div key={"r" + i + "c" + j} style={lightSquare} />
+            <div key={"r" + i + "c" + j} className={styles["light-square"]} onClick={handleBoardClick}/>
           )
         } else {
           board.push(
-            <div key={"r" + i + "c" + j} style={darkSquare} />
+            <div key={"r" + i + "c" + j} className={styles["dark-square"]} />
           )
         }
       }
@@ -83,6 +80,9 @@ const GameBoard = (props) => {
     let length = windowWidth * 0.6;
     if (windowWidth <= 912) {
       length = windowWidth * 0.85;
+    }
+    if (length + 250 > windowHeight) {
+      length = windowHeight - 250;
     }
     if (length < 350) {
       return 350;
@@ -122,15 +122,23 @@ const GameBoard = (props) => {
     gridTemplateRows: `repeat(${getHorizontal(props.vertical)}, ${getSquareLength(props.horizontal, props.vertical, getBoardSize())}px)`,
     gridTemplateColumns: `repeat(${getVertical(props.horizontal)}, ${getSquareLength(props.horizontal, props.vertical, getBoardSize())}px)`,
     width: "max-content",
-    height: "max-content"
+    height: "max-content",
+    boxShadow: "0px 0px 8px 8px rgb(109, 138, 190)",
   }
 
   createGrid();
 
   return (
-      <div style={ boardStyle } >
-        { board }
+    <div>
+      <div className={styles["game-board"]}>
+        <div style= { boardStyle } >
+          { board }
+        </div>
       </div>
+      <div>
+        Left click the board to add pieces or range squares.  Right click to cancel.
+      </div>
+    </div>
   );
 };
 
