@@ -3,6 +3,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./profile.module.scss";
 import { deleteUser } from "../../actions/auth";
+import StandardButton from "../standardbutton/StardardButton";
 
 const Profile = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
@@ -118,8 +119,8 @@ const Profile = (props) => {
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
       </ul> */}
-      <button className={styles["profile-button"]} onClick={handleDelete}>Delete Account</button>
-      <button className={styles["profile-button"]} onClick={handleEdit}>Edit Account</button>
+      <StandardButton buttonText={"TestDelet"} onClick={handleDelete}></StandardButton>
+      <StandardButton onClick={handleEdit}>Edit Account</StandardButton>
     </div>
   );
 };

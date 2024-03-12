@@ -85,6 +85,8 @@ label {
   width: 400px;
   margin-top: 10px;
   padding: 5px 10px;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .checkbox-container {
@@ -112,6 +114,26 @@ label {
   background-color: rgb(59, 61, 131);
   cursor: pointer;
 }
+
+.hidden {
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 912px) {
 

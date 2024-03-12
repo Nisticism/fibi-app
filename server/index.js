@@ -139,9 +139,21 @@ app.get("/users", (req, res) => {
   });
 })
 
-app.post("/users", (req, res) => {
+app.get("/pieces", (req, res) => {
 
+  db.query("SELECT * FROM chessusnode.pieces",
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    let pieces = result;
+    res.json(pieces);
+  });
 })
+
+// app.post("/users", (req, res) => {
+
+// })
 
 app.post("/register", async (req, res) => {
   const username = req.body.username;
@@ -316,9 +328,68 @@ const posts = [{
   title: "Post 2"
 }]
 
-app.get('/posts', authenticateToken, (req, res) => {
-  res.json(posts.filter(post => post.username === req.user.username))
+// app.get('/posts', authenticateToken, (req, res) => {
+//   res.json(posts.filter(post => post.username === req.user.username))
+// })
+
+//  ---------------------- Forums ---------------------------------
+
+app.post("/articles/new", async (req, res) => {
+  const title = req.body.title;
+  const genre = req.body.genre;
+  const content = req.body.content;
+  const created_at = req.body.created_at;
+  const author_id = req.body.author_id;
+  const game_type_id = req.body.game_type_id;
+  const public = req.body.public_setting;
+  const description = req.body.description;
+  let article;
+  article = { game_type_id: game_type_id, author_id: author_id, title: title, description: description,
+  content: content, created_at: created_at, genre: genre, public: public}
+
+  db.query("INSERT INTO chessusnode.articles (game_type_id, author_id, title, descript, content, created_at, genre, public) VALUES (?,?,?,?,?,?,?,?)",
+    [game_type_id, author_id, title, description, content, created_at, genre, public],
+    (err, result) => {
+      if (err) {
+        res.send({ err: err});
+      }
+      console.log(result);
+      res.status(201).send(article);
+    }
+  );
+});
+
+app.get('/articles', (req, res) => {
+  db.query("SELECT * FROM chessusnode.articles"), (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    let forums = result;
+    res.json(result);
+  }
 })
+
+app.get("/article", (params, res) => {
+  const article_id = params.query.article_id;
+  db.query("SELECT * FROM chessusnode.articles WHERE id = ?",
+  [article_id],
+  (err, result) => {
+    if (err) {
+      res.send({ err: err});
+    }
+    if (!result.length > 0) {
+      res.status(400).send({ auth: false, message: "Article does not exist" });
+    } else {
+      try {
+        res.json({ result: result[0], message: "Article found" });
+      } catch {
+        res.status(500).send()
+      }
+    }
+  })
+});
+
+//  ---------------------- Token -----------------------------
 
 app.post('/token', (req, res) => {
   const refreshToken = req.body.token

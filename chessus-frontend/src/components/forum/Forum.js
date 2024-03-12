@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./player-page.module.scss";
+import styles from "./forum.module.scss";
 import { deleteUser } from "../../actions/auth";
 import StandardButton from "../standardbutton/StardardButton";
 import axios from "axios";
 
-const PlayerPage = (props) => {
+const Forum = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
   
@@ -61,7 +61,7 @@ const PlayerPage = (props) => {
     <div className="container">
           {realUser ? 
           <div className={styles["player-page-table-container"]}>
-            <div className={styles["player-info"]}>Player Information</div>
+            <div className={styles["player-info"]}>Forum</div>
             <table className={styles["player-page-table"]}>
               <tbody>
                 <tr>
@@ -123,4 +123,4 @@ const PlayerPage = (props) => {
   );
 };
 
-export default PlayerPage;
+export default Forum;

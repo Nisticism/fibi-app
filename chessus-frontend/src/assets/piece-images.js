@@ -11,6 +11,8 @@ import blackqueen from './pieces/Black-queen.png';
 import whiteking from './pieces/White-king.png';
 import blackking from './pieces/Black-king.png';
 
+import blackchest from './pieces/black-chest.png';
+
 // Pawns
 export const WhitePawn = whitepawn;
 export const BlackPawn = blackpawn;
@@ -34,3 +36,8 @@ export const BlackQueen = blackqueen;
 // Kings
 export const WhiteKing = whiteking;
 export const BlackKing = blackking;
+
+
+// Non-chess pieces:
+// Chests
+export const BlackChest = blackchest;

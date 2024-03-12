@@ -22,26 +22,34 @@ const GameCreate = () => {
   const [gameNameValidation, setGameNameValidation] = useState("");
   const [newGame, setNewGame] = useState(null);
   const [pieceCount, setPieceCount] = useState(0);
+  const [captureOrCheckmate, setCaptureOrCheckmate] = useState(true);
+  const [winCondition, setWinCondition] = useState("Capture");
 
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
 
+  const handleWinConditionChange = (e) => {
+    e.target.value === "Capture" ? setCaptureOrCheckmate(true) : setCaptureOrCheckmate(false);
+    setWinCondition(e.target.value);
+  }
+
   const handleSubmitGame = (e) => {
     e.preventDefault();
     setNewGame({})
-    axios.post('http://localhost:3001/create/game', 
-    {data: { game: newGame}})
-   .then (res => {
-    //    setUserInfo(currentUser);
-    //    setUserInfo(res.data.result);
-    //  setRealUser(true);
-   })
-   .catch(
-     err => {
-      //  setRealUser(false);
-       console.log(err);
-   })
+    console.log("This will create a game once all the game info can be gathered");
+  //   axios.post('http://localhost:3001/create/game', 
+  //   {data: { game: newGame}})
+  //  .then (res => {
+  //   //    setUserInfo(currentUser);
+  //   //    setUserInfo(res.data.result);
+  //   //  setRealUser(true);
+  //  })
+  //  .catch(
+  //    err => {
+  //     //  setRealUser(false);
+  //      console.log(err);
+  //  })
   }
 
   return (
@@ -137,16 +145,29 @@ const GameCreate = () => {
             <label className={styles["conditions-label"]}>Win Conditions (select all that apply):&nbsp;</label>
           </div>
           <div className={styles["checkbox-container"]}>
+          <label className={styles["checkbox-label"]}>Capture or checkmate pieces or a particular piece:&nbsp;</label>
+          <input type="radio" className={styles["checkbox-style"]} checked={winCondition === "Capture"}
+           onChange={handleWinConditionChange} value="Capture"/>
+          </div>
+          <div className={styles["checkbox-container"]}>
           <label className={styles["checkbox-label"]}>Capture all pieces:&nbsp;</label>
-          <input type="checkbox" className={styles["checkbox-style"]}/>
+          <input type="radio" className={styles["checkbox-style"]} checked={winCondition === "CaptureAll"}
+          onChange={handleWinConditionChange} value="CaptureAll"/>
           </div>
           <div className={styles["checkbox-container"]}>
-          <label className={styles["checkbox-label"]}>Capture a particular piece:&nbsp;</label>
-          <input type="checkbox" className={styles["checkbox-style"]}/>
+          <label className={styles["checkbox-label"]}>Checkmate all remaining pieces:&nbsp;</label>
+          <input type="radio" className={styles["checkbox-style"]} checked={winCondition === "CheckmateAll"}
+          onChange={handleWinConditionChange} value="CheckmateAll"/>
           </div>
-          <div className={styles["checkbox-container"]}>
-          <label className={styles["checkbox-label"]}>Checkmate a particular piece:&nbsp;</label>
-          <input type="checkbox" className={styles["checkbox-style"]}/>
+          <div className={captureOrCheckmate ? styles["display-block"] : styles["hidden"]}>
+            <div className={styles["checkbox-container"]}>
+            <label className={styles["checkbox-label"]}>Capture a particular piece:&nbsp;</label>
+            <input type="checkbox" className={styles["checkbox-style"]}/>
+            </div>
+            <div className={styles["checkbox-container"]}>
+            <label className={styles["checkbox-label"]}>Checkmate a particular piece:&nbsp;</label>
+            <input type="checkbox" className={styles["checkbox-style"]}/>
+            </div>
           </div>
         </div> 
         <div>

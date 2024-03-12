@@ -25,7 +25,6 @@ const updateUser = (updatedData) => {
 const edit = (username, password, email, first_name, last_name, phone, id) => {
   console.log("in auth service");
   console.log("btw the password is still: " + password);
-  // localStorage.removeItem("user");
   if (email === "") {
     email = null;
   }

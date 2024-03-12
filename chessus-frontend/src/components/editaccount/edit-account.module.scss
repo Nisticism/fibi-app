@@ -7,7 +7,7 @@
 
 .field-label {
   display: inline-block;
-  width: 120px;
+  width: 150px;
 }
 
 .update-button {
@@ -25,4 +25,20 @@
 .update-button:hover {
   background-color: rgb(59, 61, 131);
   cursor: pointer;
+}
+
+.current-new-password-message {
+  width: 400px;
+  margin-top: 10px;
+  line-height: 22px;
+  font-size: 18px;
+  padding: 12px;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+.current-new-password-message-container {
+  padding-left: 10px;
+  padding-right: 10px;
 }

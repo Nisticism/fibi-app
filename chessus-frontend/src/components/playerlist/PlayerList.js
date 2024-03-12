@@ -22,18 +22,6 @@ const PlayerList = () => {
     }
   }, [firstRender]);
 
-  const AllUsersList = () => (
-    
-      allUsers.usersList ? allUsers.usersList.map(function(user) {
-        if (user.email) {
-            <p>
-              User id: {user.id}
-            </p>
-        }
-      }) : <p>test</p>
-    
-  );
-
   if (!currentUser) {
     return <Navigate to="/login" />;
   }
@@ -108,7 +96,6 @@ const PlayerList = () => {
         
  : <p>blank</p>
         }
-        <AllUsersList />
       </div>
     </div>
   );

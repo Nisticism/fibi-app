@@ -233,8 +233,12 @@ const EditAccount = () => {
                   validations={[required, vPhoneNumber]}
                 />
               </div>
+              <div className={styles["current-new-password-message-container"]}>
+                <label className={styles["field-label"]}></label>
+                <div className={styles["current-new-password-message"]}><i>Only enter your current and new password if you would like to change your password.</i></div>
+              </div>
               <div className="form-group">
-                <label htmlFor="password" className={styles["field-label"]}>Old Password</label>
+                <label htmlFor="password" className={styles["field-label"]}>Current Password</label>
                 <input
                   type="password"
                   className="form-control"

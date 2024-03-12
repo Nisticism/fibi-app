@@ -17,7 +17,7 @@ const Menu = () => (
           New game
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
-          Browse games
+          Browse open games
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
           Sandbox
@@ -43,8 +43,11 @@ const Menu = () => (
         <Link as="div" className="inner-menu-item" to="/home">
           Design a piece
         </Link>
-        <Link as="div" className="inner-menu-item lower-corner" to="/home">
-          Browse games
+        <Link as="div" className="inner-menu-item" to="/games">
+          View games
+        </Link>
+        <Link as="div" className="inner-menu-item lower-corner" to="/pieces">
+          View pieces
         </Link>
       </div>
     </div>
@@ -56,7 +59,7 @@ const Menu = () => (
       <Link as="div" className="nav-item-inner" to="/media">Media
       </Link>
       <div className="inner-menu">
-        <Link as="div" className="inner-menu-item upper-right-corner" to="/home">
+        <Link as="div" className="inner-menu-item upper-right-corner" to="/forums">
           General forums
         </Link>
         <Link as="div" className="inner-menu-item" to="/home">
