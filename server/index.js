@@ -44,7 +44,7 @@ db.connect(err => {
 // Create Database
 
 app.get('/create-db', (req, res) => {
-  let sql = 'CREATE DATABASE IF NOT EXISTS ChessusNode'
+  let sql = 'CREATE DATABASE IF NOT EXISTS Fibi'
   db.query(sql, err => {
     if (err) {
       throw err;
@@ -93,7 +93,7 @@ app.get('/seed', (req, res) => {
 
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../chessus-frontend/public')));
+app.use(express.static(path.resolve(__dirname, '../fibi-frontend/public')));
 
 
 
@@ -109,7 +109,7 @@ app.get("/", (req, res) => {
 
 app.get("/user", (params, res) => {
   const username = params.query.username;
-  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  db.query("SELECT * FROM Fibi.users WHERE username = ?",
   [username],
   (err, result) => {
     if (err) {
@@ -129,7 +129,7 @@ app.get("/user", (params, res) => {
 
 app.get("/users", (req, res) => {
 
-  db.query("SELECT * FROM chessusnode.users",
+  db.query("SELECT * FROM Fibi.users",
   (err, result) => {
     if (err) {
       res.send({ err: err});
@@ -141,7 +141,7 @@ app.get("/users", (req, res) => {
 
 app.get("/pieces", (req, res) => {
 
-  db.query("SELECT * FROM chessusnode.pieces",
+  db.query("SELECT * FROM Fibi.pieces",
   (err, result) => {
     if (err) {
       res.send({ err: err});
@@ -162,7 +162,7 @@ app.post("/register", async (req, res) => {
   let user;
   let hashedPassword;
 
-  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  db.query("SELECT * FROM Fibi.users WHERE username = ?",
   [username],
   (err, result) => {
     if (err) {
@@ -175,7 +175,7 @@ app.post("/register", async (req, res) => {
         res.status(500).send({ message: "Username already exists" });
       }
     } else {
-      db.query("SELECT * FROM chessusnode.users WHERE email = ?",
+      db.query("SELECT * FROM Fibi.users WHERE email = ?",
       [email],
         (err, result) => {
           if (err) {
@@ -192,7 +192,7 @@ app.post("/register", async (req, res) => {
             } catch {
               res.status(500).send()
             }
-            db.query("INSERT INTO chessusnode.users (username, password, email) VALUES (?,?,?)",
+            db.query("INSERT INTO Fibi.users (username, password, email) VALUES (?,?,?)",
             [username, hashedPassword, email],
               (err, result) => {
                 console.log(err);
@@ -221,7 +221,7 @@ app.post("/profile/edit", async (req, res) => {
   let user;
   let hashedPassword;
 
-  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  db.query("SELECT * FROM Fibi.users WHERE username = ?",
   [username],
   (err, result) => {
     if (err) {
@@ -233,7 +233,7 @@ app.post("/profile/edit", async (req, res) => {
       if (username.length < 1) {
         res.status(500).send({ message: "Username must be between 1 and 20 characters" });
       }
-      db.query("SELECT * FROM chessusnode.users WHERE email = ?",
+      db.query("SELECT * FROM Fibi.users WHERE email = ?",
       [email],
         (err, result) => {
           if (err) {
@@ -252,7 +252,7 @@ app.post("/profile/edit", async (req, res) => {
             } catch {
               res.status(500).send()
             }
-            db.query("UPDATE chessusnode.users SET username = ?, password = ?, email = ?, first_name = ?, last_name = ?, phone = ? WHERE id = ?",
+            db.query("UPDATE Fibi.users SET username = ?, password = ?, email = ?, first_name = ?, last_name = ?, phone = ? WHERE id = ?",
             [username, hashedPassword, email, first_name, last_name, phone, id],
               (err, result) => {
                 console.log(err);
@@ -269,11 +269,11 @@ app.post("/profile/edit", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-
+  console.log("in index.js server login");
   const username = req.body.username;
   const password = req.body.password;
-
-  db.query("SELECT * FROM chessusnode.users WHERE username = ?",
+  console.log(`username: ${username} password: ${password}`);
+  db.query("SELECT * FROM Fibi.users WHERE username = ?",
   [username],
   (err, result) => {
     if (err) {
@@ -282,11 +282,15 @@ app.post("/login", async (req, res) => {
     if (!result.length > 0) {
       res.status(400).send({ auth: false, message: "Username does not exist" });
     } else {
+      console.log("at least we found a user");
       //  If the username exists, check everything else:
       try {
         if (bcrypt.compareSync(password, result[0].password)) {
+          console.log("succeeded!");
           const user = { username: username, password: password };
+          console.log(user);
           const accessToken = generateAccessToken(user);
+          console.log("succeeded!");
           // const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET);
           result[0].accessToken = accessToken;
           res.json({ auth: true, result: result[0] });
@@ -303,7 +307,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/delete", async (req, res) => {
   const username = req.body.username;
-  db.query("DELETE FROM chessusnode.users WHERE username = ?",
+  db.query("DELETE FROM Fibi.users WHERE username = ?",
   [username],
   (err, result) => {
     if (err) {
@@ -347,7 +351,7 @@ app.post("/articles/new", async (req, res) => {
   article = { game_type_id: game_type_id, author_id: author_id, title: title, description: description,
   content: content, created_at: created_at, genre: genre, public: public}
 
-  db.query("INSERT INTO chessusnode.articles (game_type_id, author_id, title, descript, content, created_at, genre, public) VALUES (?,?,?,?,?,?,?,?)",
+  db.query("INSERT INTO Fibi.articles (game_type_id, author_id, title, descript, content, created_at, genre, public) VALUES (?,?,?,?,?,?,?,?)",
     [game_type_id, author_id, title, description, content, created_at, genre, public],
     (err, result) => {
       if (err) {
@@ -360,7 +364,7 @@ app.post("/articles/new", async (req, res) => {
 });
 
 app.get('/articles', (req, res) => {
-  db.query("SELECT * FROM chessusnode.articles"), (err, result) => {
+  db.query("SELECT * FROM Fibi.articles"), (err, result) => {
     if (err) {
       res.send({ err: err});
     }
@@ -371,7 +375,7 @@ app.get('/articles', (req, res) => {
 
 app.get("/article", (params, res) => {
   const article_id = params.query.article_id;
-  db.query("SELECT * FROM chessusnode.articles WHERE id = ?",
+  db.query("SELECT * FROM Fibi.articles WHERE id = ?",
   [article_id],
   (err, result) => {
     if (err) {
@@ -411,6 +415,7 @@ function authenticateToken(req, res, next) {
 }
 
 function generateAccessToken(user) {
+  console.log("in generate access token")
   return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '500s' });
 }
 

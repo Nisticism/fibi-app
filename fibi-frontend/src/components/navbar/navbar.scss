@@ -1,0 +1,255 @@
+$nav-height: calc(9vh + 2px);
+$nav-hover-color: rgb(141, 141, 148);
+$nav-background: #8b9cc9;
+$lighter-hover: rgb(92, 92, 92);
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $nav-height;
+  min-height: 80px;
+  max-height: calc(9vh + 2px);
+}
+
+.navbar-border {
+  background: rgb(202, 213, 232);
+  height: 2px;
+  display: flex;
+  width: 100%;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: -webkit-fill-available;
+}
+
+.nav-container {
+  display: flex;
+}
+
+.main-logo {
+  margin-right: 20px;
+  margin-left: 25px;
+  text-decoration: none;
+  height: $nav-height;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.main-logo:hover {
+  color: $lighter-hover;
+  cursor: pointer;
+}
+
+.navbar-links-logo img {
+  width: 62.56px;
+  height: 16.02px;
+}
+
+.navbar-links-container {
+  display: flex;
+  flex-direction: row;
+  width: -webkit-fill-available;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: 750px;
+}
+
+.navbar-links-container p, 
+.navbar-menu-container p {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: capitalize;
+  cursor: pointer;
+  height: $nav-height;
+}
+
+.nav-item-inner {
+  padding: 0px 15px;
+  text-decoration: none;
+  height: $nav-height;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sign-up {
+  width: 60px;
+  font-weight: 500;
+  float: right;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item-inner:hover {
+  background: $nav-hover-color;
+  box-shadow:inset 0px 0px 10px $lighter-hover;
+}
+
+.navbar-menu {
+  margin-left: 1rem;
+  display: none;
+  position: relative;
+}
+
+.navbar-menu svg {
+  cursor: pointer;
+}
+
+.navbar-menu-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  background-color: var(--color-footer);
+  padding: 0rem 1rem;
+  position: absolute;
+  top: calc(4.5vh + 13.5px);
+  right: 0;
+  min-width: 210px;
+  border-radius: 10px !important;
+  box-shadow: 0 0 5 rgba(0, 0, 0, 0.2);
+}
+
+.navbar-menu-container p {
+  margin: 1rem 0;
+}
+
+.user-info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inner-menu {
+  display: none;
+  margin: 0;
+}
+
+.inner-menu-item {
+  display: none;
+}
+
+.upper-right-corner {
+  border-radius: 0px 4px 0px 0px;
+}
+
+.lower-corner {
+  border-radius: 0px 0px 4px 4px;
+}
+
+.nav-item:hover {
+  background: $nav-hover-color;
+  box-shadow:inset 0px 0px 10px $lighter-hover;
+  .inner-menu {
+    display: block;
+    position: absolute;
+    width: fit-content;
+    min-width: 175px;
+    top: $nav-height;
+    border-radius: 4px 4px 4px 4px;
+  }
+  .inner-menu-item {
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 15px 0px;
+    background: $nav-hover-color;
+    height: 40px;
+    box-shadow:inset 2px 0px $lighter-hover;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .inner-menu-item:hover {
+    background:$lighter-hover;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .navbar-links-container {
+    display: none;
+  }
+
+  .navbar-menu {
+    display: flex;
+    margin-right: 10px;
+  }
+
+  .navbar-inner {
+    display: block;
+    background:black;
+  }
+
+  .nav-item-inner {
+    background: $nav-background;
+  }
+
+  .navbar-menu-container p {
+    margin: 0;
+  }
+
+  .navbar-menu-container {
+    height: 5vh;
+    margin-top: 3px;
+  }
+
+  .navbar-menu-container .navbar-inner {
+    height: 5vh;
+  }
+
+  .navbar-menu-container .navbar-inner .nav-item {
+    height: 5vh;
+  }
+
+  .navbar-menu-container .navbar-inner .nav-item a {
+    height: 5vh;
+  }
+
+  .nav-item:hover {
+    background: $nav-hover-color;
+    box-shadow:inset 2px 0px $lighter-hover;
+    .nav-item-inner {
+      width: -webkit-fill-available;
+    }
+    .inner-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: fit-content;
+      min-width: 175px;
+      min-height: 20vh;
+      position: absolute;
+      background: $nav-hover-color;
+      box-shadow:inset 2px 0px $lighter-hover;
+      top: 0px;
+      right: calc(210px + 1rem);
+      border-radius: 4px 4px 4px 4px;
+    }
+    .inner-menu-item {
+      display:flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0px 15px 0px;
+      background: $nav-hover-color;
+      height: 40px !important;
+      text-decoration: none;
+      font-size: 14px;
+      border-radius: 0px;
+    }
+    .inner-menu-item:hover {
+      background:$lighter-hover;
+    }
+  }
+}

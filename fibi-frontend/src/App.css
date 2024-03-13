@@ -1,0 +1,45 @@
+:root {
+  color: rgb(54, 54, 54);
+  background-color: #bac2d4;
+}
+
+.app {
+  text-align: center;
+}
+
+.app-header {
+  background-color: #828896;
+  min-height: 80px;
+  max-height: 10vh;
+  color: white;
+}
+
+hr {
+  width: 80%;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+a {
+  color: white;
+}
+
+th {
+  border: 1px solid rgb(54, 54, 54);
+}
+
+td {
+  border: 1px solid rgb(54, 54, 54);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.form-group {
+  padding: 10px;
+}

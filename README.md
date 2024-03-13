@@ -14,4 +14,4 @@ or go to `\seed` after running `npm run start`
 ### Troubleshooting
 
 Connection Refused: check to see if the MySQL server is running or not (start it if not)
-Can't find module in chessus-node/run: close the terminal, start the server with `npm run start`
+Can't find module in fibi/run: close the terminal, start the server with `npm run start`
