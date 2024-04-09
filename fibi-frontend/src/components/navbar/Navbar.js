@@ -16,25 +16,13 @@ const Menu = () => (
     Browse open games
     Play with friends */}
     <div className="nav-item">
-      <Link as="div" className="nav-item-inner" to="/create">News
+      <Link as="div" className="nav-item-inner" to="/news">News
       </Link>
     </div>
-
-    
-    {/* design a game, design a piece, browse games */}
-
     <div className="nav-item">
-      <Link as="div" className="nav-item-inner" to="/media">Forums
+      <Link as="div" className="nav-item-inner" to="/forums">Forums
       </Link>
     </div>
-    {/* general forums, new game forums, social media, contact, news */}
-
-    {/* <div className="nav-item">
-      <Link as="div" className="nav-item-inner" to="/chess">Plain Old Chess
-      </Link>
-    </div> */}
-    
-    {/* players, donate, leaderboard */}
   </div>
 )
 
@@ -85,11 +73,6 @@ const Navbar = () => {
                   Sign In
                 </Link>
               </div>
-              {/* <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li> */}
             </div>
           )}
         </div>

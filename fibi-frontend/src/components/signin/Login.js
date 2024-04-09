@@ -103,7 +103,7 @@ const Login = (props) => {
           </div>
           {message && messageDisplay && (
             <div className={styles["form-group"]}>
-              <div className="alert alert-danger" role="alert">
+              <div className={styles["error-message-text"]} role="alert">
                 {message}
               </div>
             </div>
@@ -111,7 +111,7 @@ const Login = (props) => {
           <button style={{ display: "none" }} ref={checkBtn} />
         </form>
         <hr />
-        <h2>Don't have an account?</h2>
+        <h2 className={styles["no-account-text"]}>Don't have an account?</h2>
         <div style={{paddingBottom: "10px"}}>
         <button className={styles["login-button"]} onClick={handleSignup}>Sign Up</button>
         </div>

@@ -29,9 +29,9 @@ app.get('/create-tables', (req, res) => {
 })
 
 // Read SQL seed query
-const seedQuery = fs.readFileSync("db/seed.sql", {
-  encoding: "utf-8",
-})
+// const seedQuery = fs.readFileSync("db/seed.sql", {
+//   encoding: "utf-8",
+// })
 
 // Run seed.sql
 

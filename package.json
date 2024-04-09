@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/index.js",
-    "startAuth": "nodemon server/authServer.js",
     "build": "cd fibi-frontend && npm install && npm run build",
     "seed": "node server/seed.js"
   },

@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Home from './components/home/Home';
-// import SignUp from './components/signup/SignUp';
 import Login from "./components/signin/Login";
 import Register from "./components/signup/Register";
-import PlayerPage from "./components/playerpage/PlayerPage";
+import UserPage from "./components/userpage/UserPage";
 import PlayerList from "./components/playerlist/PlayerList";
 import Forums from "./containers/forums/Forums";
+import CreateForum from "./components/forum/CreateForum";
 import EditAccount from "./components/editaccount/EditAccount";
+import Forum from "./components/forum/Forum";
+import EditForum from "./components/forum/EditForum";
 
 import DeletedAccount from "./components/deletedaccount/DeletedAccount";
 import NotFound from './components/notfound/NotFound';
@@ -59,13 +61,14 @@ function App() {
             {/* <Route exact path="/profile" element={<Profile />} /> */}
             <Route exact path="/community/players" element={<PlayerList />} />
             <Route exact path="/media/forums" element={<Forums />} />
-            <Route exact path="/account-deleted" element={<DeletedAccount />} />
+            {/* <Route exact path="/account-deleted" element={<DeletedAccount />} /> */}
             <Route exact path="profile/edit" element={<EditAccount />}  />
-            <Route exact path="profile/:username" element={<PlayerPage />} />
+            <Route exact path="profile/:username" element={<UserPage />} />
             <Route exact path="/forums" element={<Forums />} />
-            {/* <Route exact path="/forums/new" element={<CreateForum />} />
-            <Route exact path="/forums/:id" element={<Forum />} />
-            <Route exact path="/forums/:id/edit" element={<EditForum />} /> */}
+            <Route exact path="/forums/new" element={<CreateForum />} />
+            <Route exact path="/forums/new" element={<CreateForum />} />
+            <Route exact path="/forums/:forumId" element={<Forum />} />
+            <Route exact path="/forums/:forumId/edit" element={<EditForum />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>

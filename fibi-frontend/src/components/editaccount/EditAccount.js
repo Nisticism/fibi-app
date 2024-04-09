@@ -140,13 +140,14 @@ const EditAccount = () => {
     setOldPassword(oldPassword);
   }
 
-  const handleAccountUpdate = (e) => {
+  async function handleAccountUpdate (e) {
     e.preventDefault();
     console.log("edit submit clicked");
     setSuccessful(false);
     // form.current.validateAll();
     // if (checkBtn.current.context._errors.length === 0) {
       console.log("old password: " + oldPassword + " new password: " + password);
+      if (window.confirm("Are you sure you want to edit your account?")) {
     dispatch(edit(username, password, email, firstName, lastName, phone, id))
       .then(() => {
         setSuccessful(true)
@@ -159,6 +160,9 @@ const EditAccount = () => {
         setMessageDisplay(true);
         setSuccessful(false);
       });
+      await new Promise(resolve => setTimeout(resolve, 100));
+      navigate(`/profile/${username}`);
+    }
     // }
   };
 
@@ -235,9 +239,9 @@ const EditAccount = () => {
               </div>
               <div className={styles["current-new-password-message-container"]}>
                 <label className={styles["field-label"]}></label>
-                <div className={styles["current-new-password-message"]}><i>Only enter your current and new password if you would like to change your password.</i></div>
+                <div className={styles["current-new-password-message"]}><i>Only a new password if you would like to change your password.</i></div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="password" className={styles["field-label"]}>Current Password</label>
                 <input
                   type="password"
@@ -247,7 +251,7 @@ const EditAccount = () => {
                   onChange={onChangeOldPassword}
                   validations={[required, vpassword]}
                 />
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="password" className={styles["field-label"]}>New Password</label>
                 <input
@@ -264,13 +268,13 @@ const EditAccount = () => {
               </div>
             </div>
           )}
-          {message && messageDisplay && (
+          {/* {message && messageDisplay && (
             <div className="form-group">
               <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
                 {message}
               </div>
             </div>
-          )}
+          )} */}
           <button style={{ display: "none" }} ref={checkBtn} />
         </form>
       </div>

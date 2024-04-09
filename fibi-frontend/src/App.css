@@ -1,6 +1,6 @@
 :root {
-  color: rgb(54, 54, 54);
-  background-color: #bac2d4;
+  color: rgb(49, 53, 56);
+  background-color: #b7d0d3;
 }
 
 .app {
@@ -8,7 +8,7 @@
 }
 
 .app-header {
-  background-color: #828896;
+  background-color: #6a7677;
   min-height: 80px;
   max-height: 10vh;
   color: white;
@@ -28,11 +28,11 @@ a {
 }
 
 th {
-  border: 1px solid rgb(54, 54, 54);
+  border-bottom: 1px solid rgb(54, 54, 54);
 }
 
 td {
-  border: 1px solid rgb(54, 54, 54);
+  /* border-bottom: 1px solid rgb(54, 54, 54); */
 }
 
 .center {
@@ -42,4 +42,8 @@ td {
 
 .form-group {
   padding: 10px;
+}
+
+.container {
+  margin-bottom: 30px;
 }

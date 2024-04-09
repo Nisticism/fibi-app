@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./player-page.module.scss";
+import styles from "./user-page.module.scss";
 import { deleteUser } from "../../actions/auth";
 import StandardButton from "../standardbutton/StardardButton";
 import axios from "axios";
 
-const PlayerPage = (props) => {
+const UserPage = (props) => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
   
@@ -23,6 +23,7 @@ const PlayerPage = (props) => {
 
   useEffect(() => {
     if (!firstRender) {
+      console.log(username);
       checkIfRealUser(username);
       setFirstRender(true);
     }
@@ -34,7 +35,9 @@ const PlayerPage = (props) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteUser(currentUser.username))
+    if (window.confirm("Are you sure you want to delete your account?  It cannot be undone.")) {
+      dispatch(deleteUser(currentUser.username))
+    }
   };
 
   const handleEdit = (e) => {
@@ -62,7 +65,7 @@ const PlayerPage = (props) => {
     <div className="container">
           {realUser ? 
           <div className={styles["player-page-table-container"]}>
-            <div className={styles["player-info"]}>Player Information</div>
+            <div className={styles["player-info"]}>Account Information</div>
             <table className={styles["player-page-table"]}>
               <tbody>
                 <tr>
@@ -84,21 +87,23 @@ const PlayerPage = (props) => {
                   <td>{username === currentUser.username ? (currentUser.email ? currentUser.email : "N/A") 
                   : userInfo.email ? userInfo.email : "N/A"}</td>
                 </tr>
+                {currentUser.username === username ?
                 <tr>
                   <td>Phone:</td>
                   <td>{username === currentUser.username ? (currentUser.phone ? currentUser.phone : "N/A") 
                   : userInfo.phone ? userInfo.phone : "N/A"}</td>
                 </tr>
-                <tr>
+                : null }
+                {/* <tr>
                   <td>Role:</td>
                   <td>{username === currentUser.username ? (currentUser.role ? currentUser.role : "N/A")
                   : userInfo.role ? userInfo.role : "N/A"}</td>
-                </tr>
-                <tr>
+                </tr> */}
+                {/* <tr>
                   <td>Last Active:</td>
                   <td>{username === currentUser.username ? (currentUser.last_active_at ? currentUser.last_active_at : "N/A") 
                   : userInfo.last_active_at ? userInfo.last_active_at : "N/A"}</td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </div>
@@ -106,7 +111,7 @@ const PlayerPage = (props) => {
            <div className={styles["user-not-found"]}>
               <strong>
                 <header>
-                  Player with username "{username}" not found!
+                  Account with username "{username}" not found!
                 </header>
               </strong>
            </div>}
@@ -124,4 +129,4 @@ const PlayerPage = (props) => {
   );
 };
 
-export default PlayerPage;
+export default UserPage;

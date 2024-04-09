@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../../services/user.service";
+import styles from "./home.module.scss";
 const Home = () => {
 
   // const [content, setContent] = useState("");
@@ -22,7 +23,7 @@ const Home = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-        <h2>Home page</h2>
+        <h2 className={styles["home-page-text"]}>Welcome to Fibi</h2>
         {/* <h3>{content}</h3> */}
       </header>
     </div>

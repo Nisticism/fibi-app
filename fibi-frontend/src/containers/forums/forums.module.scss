@@ -5,13 +5,82 @@
   margin-top: 20px;
   text-align: center;
   table {
-    border-spacing: 0px;
+    border-spacing: 0px 20px;
   }
   th {
     height: 40px;
     padding: 4px 12px;
+    font-size: 18px;
   }
   td {
-    padding: 4px 12px;
+    padding: 20px;
+    background-color: rgb(150, 187, 175);
   }
+
+  .date-td {
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  .content-td {
+    border-radius: 0px 10px 10px 0px;
+  }
+}
+
+.forums-table {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.forum-page-title {
+  font-size: 50px;
+  font-weight: 800;
+  color:rgb(78, 95, 93);
+}
+
+.forums-link {
+  a {
+    color: rgb(54, 54, 54);
+    text-decoration: none !important;
+    display: block;
+  }
+}
+
+.forums-link:hover {
+  a {
+    color: rgb(83, 126, 110);
+    .forum-title {
+      color: rgb(83, 126, 110);
+    }
+  }
+}
+
+.forum-content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  line-clamp: 8; 
+  -webkit-box-orient: vertical;
+}
+
+.forum-title {
+  font-size: 22px;
+  font-weight: 600;
+  min-width: 150px;
+  color: rgb(68, 85, 68);
+}
+
+.forums-username {
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.forum-row {
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 2px solid rgb(62, 107, 100);
 }
