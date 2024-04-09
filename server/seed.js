@@ -12,21 +12,21 @@ const db = mysql.createConnection({
 
 
 // Read SQL table seed query
-const tableQuery = fs.readFileSync("db/tables-seed.sql", {
-  encoding: "utf-8",
-})
+// const tableQuery = fs.readFileSync("db/tables-seed.sql", {
+//   encoding: "utf-8",
+// })
 
 // Run tables-seed.sql
 
-app.get('/create-tables', (req, res) => {
-  let sql = tableQuery;
-  db.query(sql, err => {
-    if (err) {
-      throw err;
-    }
-    res.send("Tables Created or Exist");
-  })
-})
+// app.get('/create-tables', (req, res) => {
+//   let sql = tableQuery;
+//   db.query(sql, err => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.send("Tables Created or Exist");
+//   })
+// })
 
 // Read SQL seed query
 // const seedQuery = fs.readFileSync("db/seed.sql", {
@@ -35,12 +35,12 @@ app.get('/create-tables', (req, res) => {
 
 // Run seed.sql
 
-app.get('/seed', (req, res) => {
-  let sql = seedQuery;
-  db.query(sql, err => {
-    if (err) {
-      throw err;
-    }
-    res.send("Seed data created or exist");
-  })
-})
+// app.get('/seed', (req, res) => {
+//   let sql = seedQuery;
+//   db.query(sql, err => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.send("Seed data created or exist");
+//   })
+// })

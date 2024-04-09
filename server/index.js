@@ -57,20 +57,20 @@ app.get('/create-db', (req, res) => {
 //  -----------  Seeding/Tables -----------------
 
 // Read SQL table seed query
-const tableQuery = fs.readFileSync("db/tables-seed.sql", {
-  encoding: "utf-8",
-})
+// const tableQuery = fs.readFileSync("db/tables-seed.sql", {
+//   encoding: "utf-8",
+// })
 
 // Run tables-seed.sql.  Go to /create-tables to create the tables.
-app.get('/create-tables', (req, res) => {
-  let sql = tableQuery;
-  db.query(sql, err => {
-    if (err) {
-      throw err;
-    }
-    res.send("Tables Created or Exist");
-  })
-})
+// app.get('/create-tables', (req, res) => {
+//   let sql = tableQuery;
+//   db.query(sql, err => {
+//     if (err) {
+//       throw err;
+//     }
+//     res.send("Tables Created or Exist");
+//   })
+// })
 
 // Read SQL seed query
 // const seedQuery = fs.readFileSync("db/seed.sql", {
