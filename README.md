@@ -1,10 +1,13 @@
 TO DO: detailed instructions to start and debug
 
+### Seed the database:
+Run all commands in `fibi.sql`
+
+### Set up libraries
+Run `npm install` in the main folder then cd into `fibi-frontend` and run `npm install` again
+
 ### Start the server:
 Run `npm run start` from the main folder to start the backend, then cd into `fibi-frontend` and run `npm run start` again
-
-### Seed the database:
-`fibi.sql` has all the necessary SQL to run
 
 
 ### Troubleshooting
