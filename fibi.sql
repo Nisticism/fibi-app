@@ -45,7 +45,7 @@ DELETE FROM Fibi.articles WHERE id < 16;
 INSERT INTO Fibi.comments (author_id, article_id, content, created_at, last_updated_at) VALUES (4, 17, "Testing content 3", null, null);
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `source_id` varchar(50) DEFAULT NULL,
   `source_name` varchar(100) DEFAULT NULL,
   `author` varchar(100) DEFAULT NULL,
@@ -54,9 +54,8 @@ CREATE TABLE IF NOT EXISTS `news` (
   `url` varchar(200) DEFAULT NULL,
   `image_url` varchar(200) DEFAULT NULL,
   `date_published` datetime DEFAULT NULL,
-  `content` mediumtext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `content` mediumtext
+);
 
 SELECT * FROM news;
 
