@@ -177,6 +177,17 @@ p {
   }
 }
 
+.fibi-icon {
+  width: 89px;
+  height: 90px;
+}
+
+.fibi-icon-container {
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
 @media screen and (max-width: 750px) {
   .navbar-links-container {
     display: none;

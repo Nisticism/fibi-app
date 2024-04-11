@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, removeUsers } from "../../actions/auth";
 import { clearMessage } from "../../actions/message";
 import { history } from "../../helpers/history";
+import fibiIcon from "../../assets/fibi-icon.png";
 import './navbar.scss';
 
 const Menu = () => (
@@ -48,7 +49,14 @@ const Navbar = () => {
       <div className="navbar" id="navbar">
         <div className="navbar-links">
           <div className="nav-container">
-            <Link to="/" className="main-logo">FIBI</Link>
+            <Link to="/" className="main-logo">
+              <div className="fibi-icon-container">
+                <img src={fibiIcon} alt="Fibi icon" className="fibi-icon"/>
+              </div>
+              <div>
+                FIBI
+              </div>
+            </Link>
             <div className="navbar-links-container">
               <Menu />
             </div>

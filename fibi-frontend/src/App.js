@@ -20,6 +20,7 @@ import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 import { history } from "./helpers/history";
 import "./App.css";
+import News from "./containers/news/News";
 
 function App() {
 
@@ -69,6 +70,7 @@ function App() {
             <Route exact path="/forums/new" element={<CreateForum />} />
             <Route exact path="/forums/:forumId" element={<Forum />} />
             <Route exact path="/forums/:forumId/edit" element={<EditForum />} />
+            <Route exact path="/news" element={<News />} />
             <Route path="/*" element={<NotFound />} />
           </Routes>
         </div>
