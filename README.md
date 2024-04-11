@@ -1,14 +1,10 @@
 TO DO: detailed instructions to start and debug
 
 ### Start the server:
-`npm run start`
-
-### Create the tables:
-First run `npm run start`, then go to `\create-tables`
+Run `npm run start` from the main folder to start the backend, then cd into `fibi-frontend` and run `npm run start` again
 
 ### Seed the database:
-`npm run seed`
-or go to `\seed` after running `npm run start`
+`fibi.sql` has all the necessary SQL to run
 
 
 ### Troubleshooting

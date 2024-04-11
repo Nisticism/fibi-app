@@ -56,13 +56,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            {/* <Route path="/signup" element={<SignUp />} /> */}
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/register" element={<Register />} />
-            {/* <Route exact path="/profile" element={<Profile />} /> */}
-            <Route exact path="/community/players" element={<PlayerList />} />
+            {/* This shows all users! */}
+            <Route exact path="/community/users" element={<PlayerList />} />
             <Route exact path="/media/forums" element={<Forums />} />
-            {/* <Route exact path="/account-deleted" element={<DeletedAccount />} /> */}
             <Route exact path="profile/edit" element={<EditAccount />}  />
             <Route exact path="profile/:username" element={<UserPage />} />
             <Route exact path="/forums" element={<Forums />} />

@@ -670,19 +670,19 @@ app.post("/likes/delete", async (req, res) => {
 //  ---------------------- News ------------------------------
 
 app.post("/news/new", async (req, res) => {
-  const user_id = req.body.user_id;
+  const author = req.body.author;
   const article_id = req.body.article_id;
   const liked = true;
-  db.query("INSERT INTO Fibi.likes (user_id, article_id, liked) VALUES (?,?,?)",
+  db.query("INSERT INTO Fibi.news (user_id, article_id, liked) VALUES (?,?,?)",
     [user_id, article_id, liked],
     (err, result) => {
       if (err) {
         res.send({ err: err});
       }
-      let like;
-      like = { id: result.insertId, user_id: user_id, article_id: article_id, liked: liked}
+      let news;
+      news = { id: result.insertId, user_id: user_id, article_id: article_id, liked: liked}
       console.log(result);
-      res.json({result: like });
+      res.json({result: news });
     }
   );
 });
