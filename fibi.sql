@@ -35,14 +35,14 @@ ALTER TABLE comments ADD CONSTRAINT fk_comments_users_author_id FOREIGN KEY (aut
 ALTER TABLE comments ADD article_id INT UNSIGNED NOT NULL AFTER author_id; 
 ALTER TABLE comments ADD CONSTRAINT fk_comments_article_id FOREIGN KEY (article_id) REFERENCES articles(id);
 
-SELECT * from Fibi.users;
-SELECT * from Fibi.articles;
-SELECT * from Fibi.comments;
+-- SELECT * from Fibi.users;
+-- SELECT * from Fibi.articles;
+-- SELECT * from Fibi.comments;
 
-SELECT * from Fibi.comments WHERE id = 17;
-DELETE FROM Fibi.articles WHERE id < 16;
+-- SELECT * from Fibi.comments WHERE id = 17;
+-- DELETE FROM Fibi.articles WHERE id < 16;
 
-INSERT INTO Fibi.comments (author_id, article_id, content, created_at, last_updated_at) VALUES (4, 17, "Testing content 3", null, null);
+-- INSERT INTO Fibi.comments (author_id, article_id, content, created_at, last_updated_at) VALUES (4, 17, "Testing content 3", null, null);
 
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `content` mediumtext
 );
 
-SELECT * FROM news;
+-- SELECT * FROM news;
 
 INSERT INTO news VALUES (
 '1',
